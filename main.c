@@ -221,11 +221,25 @@ void PORTD_Int_Handler(void) {
 
 }
 
+/*
+int operar(char *palabra){
+    char suma[15]=palabra;
+    int count=0;
+    for(int i=0;i<strlen(suma);++i){
+        if(strchr("+-", suma[i])){
+            count++;
+        }
+    }
+    return coUnt;
+}
+ */
 
 int main(void)
 {
   //char ch;
   char palabra[15];
+  char snum[15];
+
   //int pos=0; //posicion del char en la palabra
 
     irclk_ini();
@@ -277,8 +291,56 @@ int main(void)
           led2();
       }else if(!strcmp(palabra, "off")){
           off();
-      }else if (atoi(palabra)!=0){
+      }else if (strlen(palabra) == strlen(itoa(atoi(palabra), snum, 10))){ //si es un string con numeros o solo un numero
+          PRINTF("\r\nNumero introducido: %s\r\n", palabra);
           lcd_display_dec(atoi(palabra));
+      }else{
+          //lcd_display_dec(operar(palabra));
+
+          int count=0;
+          for(int i=0;i<strlen(palabra);++i){
+              if(strchr("+", palabra[i])){
+                  count++;
+              }
+          }
+          lcd_display_dec(count);
+
+          /*
+          int mas[10];
+          int menos[10];
+          int mas_c=0;
+          int menos_c=0;
+          for(int i=0;i<strlen(palabra);++i){
+              if(strchr("+", palabra[i])){
+                  mas[mas_c]=i;
+                  mas_c++;
+              }
+          }
+          for(int i=0;i<strlen(palabra);++i){
+              if(strchr("-", palabra[i])){
+                  menos[menos_c]=i;
+                  menos_c++;
+              }
+          }
+
+
+          while(1){
+              int suma=0;
+              int operando;
+              int j=0;
+              int k=0;
+              for(int i=0, i<(mas_c+menos_c)){
+                  if(mas[i]<mas[j]){
+
+                  }else{
+
+                  }
+              }
+
+
+          }
+
+          lcd_display_dec(mas_c+menos_c); */
       }
 
 
