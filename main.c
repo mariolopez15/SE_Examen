@@ -276,8 +276,11 @@ int main(void)
       }else if(!strcmp(palabra, "off")){
           off();
       }else if (strlen(palabra) == strlen(itoa(atoi(palabra), snum, 10))){ //si es un string con numeros o solo un numero
-          PRINTF("Numero introducido: %s\r\n", palabra);
-          lcd_display_dec(atoi(palabra));
+          if(atoi(palabra)>=0){
+              PRINTF("Numero introducido: %s\r\n", palabra);
+              lcd_display_dec(atoi(palabra));
+          }
+
       }else{
           //lcd_display_dec(operar(palabra));
 
