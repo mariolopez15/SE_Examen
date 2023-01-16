@@ -262,28 +262,12 @@ int main(void)
 
   PRINTF("\r\nReinicio!\r\n");
   PRINTF("Introduce los comandos\r\n");
-  PUTCHAR('$');
-  PUTCHAR(' ');
+
   while (1){
-
-      /*
-      ch = GETCHAR();
-      palabra[pos]=ch;
-      PUTCHAR(ch);
-      if(ch == (char)'\r'){
-          //SCANF("%s",palabra);
-          //PRINTF("\r\n");
-          PRINTF("\r\n%s\r\n", palabra);
-          pos=0;
-
-
-      }else{
-          pos++;
-      }
-       */
-
+      PUTCHAR('$');
+      PUTCHAR(' ');
       SCANF("%s",palabra);
-      PRINTF("\r\n%s\r\n", palabra);
+      PRINTF("%s\r\n", palabra);
 
       if(!strcmp(palabra, "led1")){
           led1();
@@ -292,7 +276,7 @@ int main(void)
       }else if(!strcmp(palabra, "off")){
           off();
       }else if (strlen(palabra) == strlen(itoa(atoi(palabra), snum, 10))){ //si es un string con numeros o solo un numero
-          PRINTF("\r\nNumero introducido: %s\r\n", palabra);
+          PRINTF("Numero introducido: %s\r\n", palabra);
           lcd_display_dec(atoi(palabra));
       }else{
           //lcd_display_dec(operar(palabra));
