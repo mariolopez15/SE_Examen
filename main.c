@@ -281,33 +281,36 @@ int main(void)
       }else{
           //lcd_display_dec(operar(palabra));
 
+          /*
           int count=0;
           for(int i=0;i<strlen(palabra);++i){
-              if(strchr("+", palabra[i])){
+              if(strchr("+-", palabra[i])){
                   count++;
               }
           }
           lcd_display_dec(count);
+            */
 
-          /*
-          int mas[10];
-          int menos[10];
+          //int mas[10];
+          //int menos[10];
           int mas_c=0;
           int menos_c=0;
           for(int i=0;i<strlen(palabra);++i){
               if(strchr("+", palabra[i])){
-                  mas[mas_c]=i;
+                  //mas[mas_c]=i;
                   mas_c++;
               }
           }
           for(int i=0;i<strlen(palabra);++i){
               if(strchr("-", palabra[i])){
-                  menos[menos_c]=i;
+                  //menos[menos_c]=i;
                   menos_c++;
               }
           }
 
+          PRINTF("Hay %d simbolos + y %d simbolos -\r\n", mas_c, menos_c);
 
+          /*
           while(1){
               int suma=0;
               int operando;
@@ -324,7 +327,7 @@ int main(void)
 
           }
 
-          lcd_display_dec(mas_c+menos_c); */
+          lcd_display_dec(mas_c+menos_c);*/
       }
 
 
