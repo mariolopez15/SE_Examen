@@ -40,6 +40,8 @@
 
 #include "MKL46Z4.h"
 #include <stdbool.h>
+#include <string.h>
+
 
 /*******************************************************************************
  * Definitions
@@ -210,7 +212,9 @@ void PORTD_Int_Handler(void) {
 
 int main(void)
 {
-  char ch;
+  //char ch;
+  char palabra[15];
+  //int pos=0; //posicion del char en la palabra
 
     sw1_ini();
     sw2_ini();
@@ -229,10 +233,32 @@ int main(void)
 
 
   PRINTF("\r\nReinicio!\r\n");
+  PRINTF("Introduce los comandos\r\n");
+  PUTCHAR('$');
+  PUTCHAR(' ');
+  while (1){
 
-  while (1)
-    {
+      /*
       ch = GETCHAR();
+      palabra[pos]=ch;
       PUTCHAR(ch);
-    }
+      if(ch == (char)'\r'){
+          //SCANF("%s",palabra);
+          //PRINTF("\r\n");
+          PRINTF("\r\n%s\r\n", palabra);
+          pos=0;
+
+
+      }else{
+          pos++;
+      }
+       */
+
+      SCANF("%s",palabra);
+      PRINTF("\r\n%s\r\n", palabra);
+
+
+
+  }
+
 }
