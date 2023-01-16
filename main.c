@@ -39,6 +39,7 @@
 #include "pin_mux.h"
 
 #include "MKL46Z4.h"
+#include "lcd.h"
 #include <stdbool.h>
 #include <string.h>
 
@@ -189,7 +190,20 @@ void leds_ini()
     GPIOE->PSOR = (1 << 29);
 }
 
+void led1(){
+    led_green_set();
+    led_red_clear();
+}
 
+void led2(){
+    led_red_set();
+    led_green_clear();
+}
+
+void off(){
+    led_red_clear();
+    led_green_clear();
+}
 
 
 void PORTD_Int_Handler(void) {
@@ -198,11 +212,9 @@ void PORTD_Int_Handler(void) {
 
 
     if(sw1_check()){
-        led_green_set();
-        led_red_clear();
+        led1();
     }else if(sw2_check()){
-        led_red_set();
-        led_green_clear();
+        led2();
     }
 
 
@@ -216,12 +228,14 @@ int main(void)
   char palabra[15];
   //int pos=0; //posicion del char en la palabra
 
+    irclk_ini();
     sw1_ini();
     sw2_ini();
     led_green_ini();
     led_red_ini();
     led_green_clear();
     led_red_clear();
+    lcd_ini();
 
   /* Init board hardware. */
   BOARD_InitPins();
@@ -257,6 +271,15 @@ int main(void)
       SCANF("%s",palabra);
       PRINTF("\r\n%s\r\n", palabra);
 
+      if(!strcmp(palabra, "led1")){
+          led1();
+      }else if(!strcmp(palabra, "led2")){
+          led2();
+      }else if(!strcmp(palabra, "off")){
+          off();
+      }else if (atoi(palabra)!=0){
+          lcd_display_dec(atoi(palabra));
+      }
 
 
   }
